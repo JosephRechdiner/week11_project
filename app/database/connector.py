@@ -15,6 +15,6 @@ def get_db():
     try:
         client = MongoClient(MONGO_URI)
         db = client[MONGO_DB]
-        yield db
-    finally:
-        client.close()
+        return db
+    except Exception as e:
+        raise e
