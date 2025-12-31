@@ -14,7 +14,8 @@ class ContactService:
         try:
             new_document_id = ContactDal.insert_document_dal(new_document, collection_name, db)
             if new_document_id:
-                return {"msg": "Contact added succesfully", "Id": "new_document_id"}
+                return {"msg": "Contact added succesfully", "Id": new_document_id}
+            return {"msg": "Phone number already exists"}
         except Exception as e:
             raise HTTPException(status_code=409, detail=str(e))
 
