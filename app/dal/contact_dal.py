@@ -1,15 +1,14 @@
 from bson import ObjectId
-
 class ContactDal:
-    @classmethod
-    def get_collection(collection_name: str, db):
+    @staticmethod
+    def get_collection_dal(collection_name: str, db):
         all_documents = []
         for document in db[collection_name].find():
             all_documents.append(document)
         return all_documents
 
-    @classmethod
-    def insert_document(new_document: dict, collection_name: str, db):
+    @staticmethod
+    def insert_document_dal(new_document: dict, collection_name: str, db):
         try:
             db_result = db[collection_name].insert_one(new_document)
             if db_result:
@@ -18,8 +17,8 @@ class ContactDal:
         except Exception as e:
             raise e
 
-    @classmethod
-    def update_document(doc_id: ObjectId, new_document: dict, collection_name: str, db):
+    @staticmethod
+    def update_document_dal(doc_id: ObjectId, new_document: dict, collection_name: str, db):
         try:
             contact_to_update = db[collection_name].find_one({"_id": doc_id})
             if contact_to_update:
@@ -30,8 +29,8 @@ class ContactDal:
         except Exception as e:
             raise e
             
-    @classmethod
-    def delete_document(doc_id: ObjectId, collection_name: str, db):
+    @staticmethod
+    def delete_document_dal(doc_id: ObjectId, collection_name: str, db):
         try:
             contact_to_delete = db[collection_name].find_one({"_id": doc_id})
             if contact_to_delete:
