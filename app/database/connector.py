@@ -13,10 +13,10 @@ MONGO_URI = f'mongodb://{MONGO_HOST}:{MONGO_PORT}/{MONGO_DB}'
 MONGO_COLLECTION = "contacts"
 
 class MongoDB:
-    def __init__(self, db=MONGO_DB, uri=MONGO_URI, collection=MONGO_COLLECTION):
+    def __init__(self, db=MONGO_DB, uri=MONGO_URI, collection_name=MONGO_COLLECTION):
         self.db = db
         self.uri = uri
-        self.collection = collection
+        self.collection_name = collection_name
         self.client = None
 
     def get_client(self):
@@ -33,7 +33,6 @@ class MongoDB:
         except Exception as e:
             raise e
         
-        
     def get_db(self):
         try:
             if not self.client:
@@ -43,11 +42,5 @@ class MongoDB:
         except Exception as e:
             raise e
 
-    def get_collection(self):
-        try:
-            if not self.client:
-                self.client = self.get_client()
-                db = self.client[self.db]
-                return db[self.collection]
-        except Exception as e:
-            raise e
+    def get_collection_name(self):
+        return self.collection_name
