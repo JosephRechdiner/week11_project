@@ -10,7 +10,6 @@ contact_route = APIRouter(prefix="/contacts")
 
 @contact_route.get("/get_all_contacts")
 def get_all_contacts(collection_name = Depends(CONNECTION.get_collection_name), db = Depends(CONNECTION.get_db)):
-    print(db)
     return ContactService.get_collection_service(collection_name, db)
 
 @contact_route.post("/create_new_contact")
