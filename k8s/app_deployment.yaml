@@ -20,11 +20,11 @@ spec:
         ports:
         - containerPort: 8000
         env:
-        - name: MONGO_HOST
+        - name: "MONGO_HOST"
           value: "mongo"
-        - name: MONGO_PORT
+        - name: "MONGO_PORT"
           value: "27017"
-        - name: MONGO_db
+        - name: "MONGO_DB"
           value: "contactsdb"  
         volumeMounts:
           - name: mongo-storage
