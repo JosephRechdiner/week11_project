@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from service.contact_service import ContactService
 from database.connector import MongoDB
-from .schemas import ContactCreate, ContactUpdate
+from models.contact_models import ContactCreate, ContactUpdate
 from bson import ObjectId
 
 CONNECTION = MongoDB()
