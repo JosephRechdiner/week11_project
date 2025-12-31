@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fastapi
+  labels:
+    app: fastapi
 spec:
   replicas: 1
   selector:
@@ -13,10 +15,14 @@ spec:
         app: fastapi
     spec:
       containers:
-        - name: fastapi
-          image: josephrechdiner/fastapi-mongo:latest
-          ports:
-            - containerPort: 8000
-          env:
-            - name: MONGO_URI
-              value: mongodb://mongo:27017
+      - name: fastapi
+        image: josephrechdiner/app
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MONGO_HOST
+          value: "mongo"
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_db
+          value: "contactsdb"
